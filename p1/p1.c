@@ -42,26 +42,34 @@ int sum_of_multiples(int x) {
     int total = 0;
 
     /* Floor conditions: sums past groupings of 15 */
-    if (floor == 1) {
-        total += 60;
-    }
-    else if (floor > 1) {
+    if (floor > 1) {
         total += 105 * (floor - 1) + 60;
     }
+    else if (floor == 1) {
+        total += 45;
+    }
+
+    printf("f_total: %d\n", total);
 
     /* Remainder loop: runs in constant time O(6) for all values of x */
     int r_arr[] = {3, 5, 6, 9, 10, 12};
 
-    for (int i = 0; i < sizeof(r_arr)/sizeof(int); i++) {
-        if (remainder > r_arr[i]) {
-            total += floor * 15 + r_arr[i];
-        }
-        else {
-            break;
+    if (remainder < 3) {
+        total += floor * 15;
+    }
+    else {
+        for (int i = 0; i < sizeof(r_arr)/sizeof(int); i++) {
+            if (remainder > r_arr[i]) {
+                total += floor * 15 + r_arr[i];
+            }
+            else {
+                break;
+            }
         }
     }
-    
-    printf("NUMBER: %d\tFloor: %d\tRemainder: %d\tTotal: %d\n", \
+    printf("r_total: %d\n", total);
+
+    printf("\nNUMBER: %d\tFloor: %d\tRemainder: %d\tTotal: %d\n . . . \n", \
             x, floor, remainder, total);
 
     return total;
