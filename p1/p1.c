@@ -12,7 +12,13 @@ static char * all_tests();
 /* Test counter. Incremented by minunit.h */
 int tests_run = 0;
 
-int main(int argc, char *argv[]) {
+int main() {
+    /* 
+     * The reults of all_tests() from mintest.h will == 0 when all 
+     * tests pass.
+     * Otherwise, all_tests() will return a string describing the 
+     * failure. 
+    */
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);
@@ -20,6 +26,11 @@ int main(int argc, char *argv[]) {
     else {
         printf("ALL TESTS PASSED\n");
     }
+    
+    /* 
+     * mintest.h counts the number of tests it ran, should match the
+     * number of tests listed in all_tests() below
+    */
     printf("Tests run %d\n", tests_run);
 
     return result != 0;
