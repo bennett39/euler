@@ -3,10 +3,9 @@
 # include "../minunit.h"
 
 /* Program functions */
-int sum_of_multiples(int x);
+int sum_of_multiples(int total, int x);
 
 /* Testing functions */
-static char * test_2();
 static char * all_tests();
 
 /* Test counter. Incremented by minunit.h */
@@ -32,80 +31,71 @@ int main() {
      * all_tests() below, until a test fails and all_tests quits. 
     */
     printf("Tests run %d\n", tests_run);
+    
+    int user_entry, error_check;
+    printf("Enter a number: ");
+    error_check = scanf("%d", &user_entry);
+
+    if (error_check == EOF || error_check == 0) {
+        fprintf(stderr, "Invalid entry. Quitting...\n");
+    }
+    else {
+        printf("You entered %d\n", user_entry);
+        printf("The sum of 3/5 factors is %d\n", sum_of_multiples(0, user_entry));
+    }
 
     return result != 0;
 }
 
-int sum_of_multiples(int x) {
-    int floor = x / 15;
-    int remainder = x % 15;
-    int total = 0;
-
-    /* Floor conditions: sums past groupings of 15 */
-    if (floor > 1) {
-        total += 105 * (floor - 1) + 60;
+int sum_of_multiples(int total, int x) {
+    x -= 1;
+    if (x < 3) {
+        printf("%d\n", total);
+        return total;
     }
-    else if (floor == 1) {
-        total += 45;
-    }
-
-    printf("f_total: %d\n", total);
-
-    /* Remainder loop: runs in constant time O(6) for all values of x */
-    int r_arr[] = {3, 5, 6, 9, 10, 12};
-
-    if (remainder < 3) {
-        total += floor * 15;
+    else if (x % 3 == 0 || x % 5 == 0) {
+        return sum_of_multiples(total + x, x);
     }
     else {
-        for (int i = 0; i < sizeof(r_arr)/sizeof(int); i++) {
-            if (remainder > r_arr[i]) {
-                total += floor * 15 + r_arr[i];
-            }
-            else {
-                break;
-            }
-        }
+        return sum_of_multiples(total, x);
     }
-    printf("r_total: %d\n", total);
-
-    printf("\nNUMBER: %d\tFloor: %d\tRemainder: %d\tTotal: %d\n . . . \n", \
-            x, floor, remainder, total);
-
-    return total;
 }
-
 
 
 /* TESTS */
 
 static char * test_2() {
-    mu_assert("error 2 !>> 0", sum_of_multiples(2) == 0);
+    mu_assert("error 2 !>> 0", sum_of_multiples(0, 2) == 0);
     return 0;
 }
 
 static char * test_10() {
-    mu_assert("error 10 !>> 23", sum_of_multiples(10) == 23);
+    mu_assert("error 10 !>> 23", sum_of_multiples(0, 10) == 23);
     return 0;
 }
 
 static char * test_16() {
-    mu_assert("error 16 !>> 60", sum_of_multiples(16) == 60);
+    mu_assert("error 16 !>> 60", sum_of_multiples(0, 16) == 60);
     return 0;
 }
 
 static char * test_19() {
-    mu_assert("error 19 !>> 78", sum_of_multiples(19) == 78);
+    mu_assert("error 19 !>> 78", sum_of_multiples(0, 19) == 78);
     return 0;
 }
 
 static char * test_31 () {
-    mu_assert("error 31 !>> 225", sum_of_multiples(31) == 225);
+    mu_assert("error 31 !>> 225", sum_of_multiples(0, 31) == 225);
     return 0;
 }
 
-static char * test_33 () {
-    mu_assert("error 33 !>> 225", sum_of_multiples(33) == 225);
+static char * test_33() {
+    mu_assert("error 33 !>> 225", sum_of_multiples(0, 33) == 225);
+    return 0;
+}
+
+static char * test_48() {
+    mu_assert("error 48 !>> 543", sum_of_multiples(0, 47) == 495);
     return 0;
 }
 
@@ -116,6 +106,7 @@ static char * all_tests() {
     mu_run_test(test_19);
     mu_run_test(test_31);
     mu_run_test(test_33);
+    mu_run_test(test_48);
 
     return 0;
 }
