@@ -3,6 +3,7 @@
 # include "../minunit.h"
 
 /* Program functions */
+long long sum_even_fibs(long long total, int last, int current, int upper_bound);
 
 /* Testing functions */
 static char * all_tests();
@@ -30,28 +31,32 @@ int main() {
      * all_tests() below, until a test fails and all_tests quits. 
     */
     printf("Tests run %d\n", tests_run);
+    
+    long long solution = sum_even_fibs(0, 1, 1, 4000000);
+    printf("Solution: %lli\n", solution);
 
     return result != 0;
 }
 
-int sum_even_fibs(long long total, int last, int current, int upper_bound) {
+long long sum_even_fibs(long long total, int last, int current, int upper_bound) {
     /* Since this will eventually add terms up to 4 million, a
      * conservative upper bound is 4 million * 4 million (aka 4
      * trillion). That's too big for an int. While we won't likely hit
      * the limit, I'll use a long long to store the sum */
 
     /* Recursive Fibonacci solution */
-    if (total >= upper_bound) {
-        printf("%lli", total);
+    int new = last + current;
+    if (new > upper_bound) {
         return total;
     }
     
-    int new = last + current;
     if (new % 2 == 0) {
         total += new;
     }
+
     last = current;
     current = new;
+
     return sum_even_fibs(total, last, current, upper_bound);
 }
 
