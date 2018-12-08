@@ -1,3 +1,11 @@
+/* A program to find the prime factors of a given input. 
+ *
+ * Actual Project Euler challenge was to find the greatest prime factor,
+ * but I (mistakenly) implemented a function that finds ALL prime
+ * factors, in ascending order. Therefore, getting the greatest factor
+ * would be trivial. Just look at the last non-zero item in the output
+ * array. */
+
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -47,7 +55,6 @@ int main() {
 /* Returns a pointer to the single-dimension array `factors` */
 /* Number argument goes up to 1 trillion, so needs to be a long long. */ 
 int * prime_factors(long long number) {
-
 
     /* DEBUGGING - Remove in production */
     printf("%lli: {", number);
@@ -127,13 +134,7 @@ static char * test_13195() {
             memcmp(a, b, sizeof(a)) == 0);
     return 0;
 }
-/*
-static char * test_600billion() {
-    int *a;
-    a = prime_factors(600851475143);
-    
-}
-*/
+
 static char * all_tests() {
     /* mu_run_test(test_tk); */
     mu_run_test(test_0);
