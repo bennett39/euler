@@ -1,6 +1,9 @@
 # include <stdio.h>
 # include <stdlib.h>
+
+# include <math.h>
 # include <string.h>
+
 # include "../minunit.h"
 
 /* Program functions */
@@ -32,6 +35,9 @@ int main() {
      * all_tests() below, until a test fails and all_tests quits. 
     */
     printf("Tests run %d\n", tests_run);
+  
+    printf("\n. . .\n");
+    prime_factors(600851475143);
     
     return result != 0;
 }
@@ -42,17 +48,50 @@ int main() {
 /* Number argument goes up to 1 trillion, so needs to be a long long. */ 
 int * prime_factors(long long number) {
 
+
+    /* DEBUGGING - Remove in production */
+    printf("%lli: {", number);
+
     /* Array size of 40 to accommodate prime factors up to 1 trillion, since
      * log2(1 trillion) ~= 39 -- the largest possible array of prime
      * factors less than 1 trillion. (e.g. 2 ^ 39) */
     static int factors[40];
+   
+    if (number <= 3) {
+        factors[0] = (int) number;
+        printf("}\n");
+        return factors;
+    }
 
-    printf("%lli: {", number);
+    /* Strightforward while loop implementation in linear time. */
+    int i = 2;
+    static int counter = 0;
+
+    /* Largest possible prime factor this loop might find is 
+     * (smaller prime)^2 */
+    while (i <= sqrt(number)) {
+        if (number % i == 0) {
+            factors[counter] = i;
+            counter++;
+
+            number = number / i;
+            i = 2;
+        }
+        else {
+            i++;
+        }
+    }
     
-    int i;
-    for (i = 0; i < 40; i++) {
-        if (factors[i] != 0) {
-            printf("%d, ", factors[i]);
+    if (i > sqrt(number)) {
+        factors[counter] = (int) number;
+    }
+    
+
+    /* DEBUGGING - Remove in production */
+    int j;
+    for (j = 0; j < 40; j++) {
+        if (factors[j] != 0) {
+            printf("%d, ", factors[j]);
         }
     }
 
@@ -88,7 +127,13 @@ static char * test_13195() {
             memcmp(a, b, sizeof(a)) == 0);
     return 0;
 }
-
+/*
+static char * test_600billion() {
+    int *a;
+    a = prime_factors(600851475143);
+    
+}
+*/
 static char * all_tests() {
     /* mu_run_test(test_tk); */
     mu_run_test(test_0);
