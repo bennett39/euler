@@ -1,3 +1,13 @@
+/* A program to find the sum of all multiples of 3 or 5 less than 1000.
+ *
+ * Changing the factors (e.g. 3, 5) would be trivial, so this program is
+ * extendable to other factors. The upper bound (e.g. 1000) is also easy
+ * to change.
+ *
+ * Runtime: linear - O(n). The program checks every value between 1 and
+ * n to see if it's a multiple. Not a big deal since we're only going to
+ * n = 1000. No need to implement a more complicated solution. */
+
 # include <stdio.h>
 # include <stdlib.h>
 # include "../minunit.h"
