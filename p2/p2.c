@@ -1,3 +1,13 @@
+/* A program to find the sum of even numbers in the Fibonacci series,
+ * given an upper bound.
+ *
+ * The program solves the problem recursively, changing and passing
+ * values back into itself.
+ *
+ * Runtime: O(log n). Not log2(n), though. The Fib series
+ * doesn't grow quadratically. It grows along the Golden Ratio, so 
+ * log1.618(n). */
+
 # include <stdio.h>
 # include <stdlib.h>
 # include "../minunit.h"
