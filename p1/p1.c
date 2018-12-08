@@ -13,7 +13,7 @@ int tests_run = 0;
 
 int main() {
     /* 
-     * The reults of all_tests() from mintest.h will == 0 when all 
+     * The reults of all_tests() from minunit.h will == 0 when all 
      * tests pass.
      * Otherwise, all_tests() will return a string describing the 
      * failure. 
@@ -27,7 +27,7 @@ int main() {
     }
     
     /* 
-     * mintest.h counts the number of tests it ran, in order listed in
+     * minunit.h counts the number of tests it ran, in order listed in
      * all_tests() below, until a test fails and all_tests quits. 
     */
     printf("Tests run %d\n", tests_run);
