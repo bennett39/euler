@@ -1,3 +1,12 @@
+/* A program to find the largest palindrome that's the product of two
+ * three-digit numbers.
+ *
+ * Implemented as a double for-loop with an additional function that
+ * checks if an int is a palindrome using base-10 addition.
+ *
+ * Runtime: Worst case O(n^2) - quadratic. But the for loop includes a 
+ * break statement to ensure on average it doesn't run quadratic. */
+
 # include <stdio.h>
 # include <stdlib.h>
 
