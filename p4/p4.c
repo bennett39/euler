@@ -2,6 +2,7 @@
 # include <stdlib.h>
 
 # include <math.h>
+# include <string.h>
 
 # include "../minunit.h"
 
@@ -39,18 +40,34 @@ int main() {
 }
 
 /* PROGRAM */
+int is_palindrome(int x) {
+    int original = x;
+    int reverse = 0;
+
+    while (original > 0) {
+        reverse *= 10;
+        
+        int r = original % 10;
+        reverse += r;
+        original /= 10;
+    }
+
+    if (reverse == x) {
+        return 1;
+    }
+
+    return 0;
+}
+
 
 int largest_palindrome_product(int digits) {
     int max = pow(pow(10, digits), 2) - 1;
-
-    char smax[7];
-
-    /* Convert max to string */
-    sprintf(smax, "%d", max); 
     
-    long output = strtol(smax, NULL, 0);
-    printf("%li\n", output);
-    return output;
+    printf("%d\n", max);
+    if (is_palindrome(max) == 1) {
+        printf("%d is a palindrome.\n", max);
+    }
+    return max;
 }
 
 /* TESTS */
