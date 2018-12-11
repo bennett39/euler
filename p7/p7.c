@@ -1,3 +1,15 @@
+/* A program to find the nth prime. Works for the 67th through 10,000th
+ * prime.
+ *
+ * Uses a hard coded array of the first 66 primes as factors for use in
+ * modulo division checking. Could make creating this array procedural
+ * in future version, to extend the program's functionality.
+ *
+ * Runtime: O(n log n)
+ * Since checking prime factors is hard-coded, that runs in constant
+ * O(66) time, so O(1). Further, we increment and check potential primes
+ * by adding two and primes grow by n*ln(n). */
+
 # include <stdio.h>
 # include <stdlib.h>
 
