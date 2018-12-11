@@ -14,7 +14,9 @@ long long nth_prime(int n) {
         167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, \
         233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293};
 
-    return 0;
+    int counter = sizeof(primes_less_than)/sizeof(int);
+
+    return counter;
 }
 
 int main () {
