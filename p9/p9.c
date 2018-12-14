@@ -1,3 +1,15 @@
+/* A program to find a Pythagorean triplet with a given sum, such
+ * that a^2 + b^2 = c^2 and a + b + c = given value.
+ *
+ * Solution increments through possible values of a and b looking for
+ * round values (integer) of c that sum to the given value. Function
+ * then returns the product of a * b * c as an unsigned long.
+ *
+ * Runtime: Worst case, the algorithm runs in quaratic O(n^2) time, due
+ * to the nested for loop. However, the loop includes a break statement
+ * to limit the growth of the algorithm to O([n/2]^2).*/
+
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
