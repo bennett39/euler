@@ -1,3 +1,19 @@
+/* A program to find the largest sum of consecutive numbers in a series.
+ *
+ * Implemented as a double for loop within a function that takes the
+ * number of consecutive digits to multiply as an argument.
+ *
+ * Runtime O(n). Outer for loop iterates through all numbers in the
+ * series. Inner for loop runs in constant time, depends on how many
+ * consecutive digits you'd like to compare.
+ *
+ * I hard coded the array, because the problem didn't indicate the array
+ * would change. However, I left comments below on how I'd handle an
+ * array that might change. I should probably move the declaration of
+ * the array somewhere else in the program as it clutters the code, but
+ * I'm here writing my final comment and it's late and only a handful of
+ * people are ever going to see this code anyway. */
+
 # include <stdio.h>
 # include <stdlib.h>
 # include "../minunit.h"
