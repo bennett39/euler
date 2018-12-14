@@ -2,10 +2,6 @@
 # include <stdlib.h>
 # include "../minunit.h"
 
-/* Program functions */
-
-
-
 /* Testing functions */
 static char * all_tests();
 
@@ -93,6 +89,8 @@ unsigned long long product_in_series(int n) {
         0, 4, 2, 8, 2, 5, 2, 4, 8, 3, 6, 0, 0, 8, 2, 3, 2, 5, 7, 5, 3, \
         0, 4, 2, 0, 7, 5, 2, 9, 6, 3, 4, 5, 0}; 
 
+    /* Double for loop implementation is fast enough since inner for
+     * loop works in constant time O(13) */
     int i, j; 
     unsigned long long max = 0;
 
