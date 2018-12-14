@@ -1,12 +1,9 @@
 # include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 # include "../minunit.h"
 
-/* Program functions */
-
-
-
-/* Testing functions */
+/* Testing prototype */
 static char * all_tests();
 
 /* Test counter. Incremented by minunit.h */
@@ -37,20 +34,50 @@ int main() {
 }
 
 /* PROGRAM */
-unsigned int product_pythagorean_triplet(unsigned int triplet_sum) {
+/* Need a long to handle potential values in the tens of millions. */
+unsigned long product_pythagorean_triplet(unsigned int triplet_sum) {
+    unsigned int a, b;
+    
+    for (a = 1; a < triplet_sum; a++) {
+        for (b = 1; b < triplet_sum; b++) {
+            if (a + b >= triplet_sum) {
+                break;
+            }
+            
+            float c = sqrt(a*a + b*b);
+
+            if (c == (int) c && a + b + c == triplet_sum) {
+                return a * b * c;
+            }
+        }
+    }
+    
     return 0;
 }
 
 /* TESTS */
-
 static char * test_zero() {
     mu_assert("Zero should equal zero", \
-        product_pythagorean_triplet(0) == 0);
+            product_pythagorean_triplet(0) == 0);
+    return 0;
+}
+
+static char * test_12() {
+    mu_assert("12 should give 60", \
+           product_pythagorean_triplet(12) == 60);
+    return 0;
+}
+
+static char * test_1000() {
+    mu_assert("1000 should give 31,875,000", \
+            product_pythagorean_triplet(1000) == 31875000);
     return 0;
 }
 
 static char * all_tests() {
     mu_run_test(test_zero);
+    mu_run_test(test_12);
+    mu_run_test(test_1000);
 
     return 0;
 }
