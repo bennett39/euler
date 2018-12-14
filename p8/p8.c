@@ -39,7 +39,7 @@ int main() {
 /* PROGRAM */
 /* Largest possible product is 9^13, so I'll need to return a long long
  * */
-unsigned long long product_in_series(int adjacent) {
+unsigned long long product_in_series(int n) {
     /* I've chosen to hard-code the array because the problem never
      * idicates it will change. If it would, a pre-processing step with
      * modulo division could create this array quickly and trivially. */
@@ -93,9 +93,24 @@ unsigned long long product_in_series(int adjacent) {
         0, 4, 2, 8, 2, 5, 2, 4, 8, 3, 6, 0, 0, 8, 2, 3, 2, 5, 7, 5, 3, \
         0, 4, 2, 0, 7, 5, 2, 9, 6, 3, 4, 5, 0}; 
 
-    printf("%hhu - %hhu\n", large[0], large[1000]);
+    int i, j; 
+    unsigned long long max = 0;
 
-    return 0;
+    if (n > 0) {
+        for (i = 0; i + n < 1000; i++) {
+            unsigned long long product = 1;
+            
+            for (j = 0; j < n; j++) {
+                product *= large[i + j];
+            }
+
+            if (product > max) {
+                max = product;
+            }
+        }
+    }
+
+    return max;
 }
 
 
@@ -105,8 +120,21 @@ static char * test_zero() {
     return 0;
 }
 
+static char * test_four() {
+    mu_assert("4 should equal 5832", product_in_series(4) == 5832);
+    return 0;
+}
+
+static char * test_thirteen() {
+    mu_assert("13 should equal 23,514,624,000", \
+            product_in_series(13) == 23514624000);
+    return 0;
+}
+
 static char * all_tests() {
     mu_run_test(test_zero);
+    mu_run_test(test_four);
+    mu_run_test(test_thirteen);
 
     return 0;
 }
