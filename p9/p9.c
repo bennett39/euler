@@ -37,18 +37,20 @@ int main() {
 }
 
 /* PROGRAM */
-
-
+unsigned int product_pythagorean_triplet(unsigned int triplet_sum) {
+    return 0;
+}
 
 /* TESTS */
 
-static char * test_tk() {
-    mu_assert("",);
+static char * test_zero() {
+    mu_assert("Zero should equal zero", \
+        product_pythagorean_triplet(0) == 0);
     return 0;
 }
 
 static char * all_tests() {
-    mu_run_test(test_tk);
+    mu_run_test(test_zero);
 
     return 0;
 }
