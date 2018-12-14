@@ -37,18 +37,21 @@ int main() {
 }
 
 /* PROGRAM */
-
+/* Largest possible product is 9^13, so I'll need to return a long long
+ * */
+unsigned long long product_in_series(int adjacent) {
+    return 0;
+}
 
 
 /* TESTS */
-
-static char * test_tk() {
-    mu_assert("",);
+static char * test_zero() {
+    mu_assert("0 should equal 0", product_in_series(0) == 0);
     return 0;
 }
 
 static char * all_tests() {
-    mu_run_test(test_tk);
+    mu_run_test(test_zero);
 
     return 0;
 }
