@@ -1,4 +1,4 @@
-def even_fibonaccis(last, current, total, upper_bound):
+def even_fibonaccis(upper_bound, last=1, current=2, total=2):
     """
     A function to calculate the sum of even fibonacci numbers below an
     upper bound.
@@ -19,11 +19,11 @@ def even_fibonaccis(last, current, total, upper_bound):
     last = current
     current = new
 
-    return even_fibonaccis(last, current, total, upper_bound)
+    return even_fibonaccis(upper_bound, last, current, total)
 
 
 def main():
-    print(even_fibonaccis(1, 2, 2, 4000000))
+    print(even_fibonaccis(4000000))
     return 0
 
 
