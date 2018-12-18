@@ -2,11 +2,7 @@
 # include <stdlib.h>
 # include "../minunit.h"
 
-/* Program functions */
-
-
-
-/* Testing functions */
+/* Testing function prototype */
 static char * all_tests();
 
 /* Test counter. Incremented by minunit.h */
@@ -15,9 +11,8 @@ int tests_run = 0;
 int main() {
     /* 
      * The reults of all_tests() from minunit.h will == 0 when all 
-     * tests pass.
-     * Otherwise, all_tests() will return a string describing the 
-     * failure. 
+     * tests pass. Otherwise, all_tests() will return a string 
+     * describing the failure. 
     */
     char *result = all_tests();
     if (result != 0) {
@@ -41,9 +36,8 @@ int main() {
 
 
 /* TESTS */
-
 static char * test_tk() {
-    mu_assert("",);
+    mu_assert("", );
     return 0;
 }
 
