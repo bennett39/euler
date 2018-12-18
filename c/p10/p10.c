@@ -2,6 +2,8 @@
 # include <stdlib.h>
 # include "../minunit.h"
 
+# include <math.h>
+
 /* Testing function prototype */
 static char * all_tests();
 
@@ -32,9 +34,24 @@ int main() {
 }
 
 /* PROGRAM */
+unsigned int* primes_below_root(unsigned long n) {
+    static unsigned int primes[200];
+    
+    primes[0] = 12;
+    primes[1] = 3;
+
+    return primes;
+}
+
+
 /* Dealing with summation of millions. Use long long. */
 unsigned long long summation_primes(unsigned long upper_bound) {
-    return 0;
+    unsigned int* factors = primes_below_root(upper_bound);
+    unsigned long long sum = 0;
+
+    printf("%d, %d\n", factors[0], factors[1]);
+    
+    return sum;
 }
 
 
