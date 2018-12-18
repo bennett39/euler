@@ -1,3 +1,13 @@
+/* A program to find the sum of all primes below an upper bound.
+ *
+ * Approach was to create an array of primes below the sqrt of the upper
+ * bound. Then, use that array as possible factors when checking all
+ * values up to the upper bound.
+ *
+ * Runtime: Quadratic, but runs as a function of the sqrt of
+ * upper_bound, and we only check odd values of n. So, O(n/2 * sqrt(n))
+ * I'm sure there's room for optimization, possibly linear? */
+
 # include <stdio.h>
 # include <stdlib.h>
 # include "../minunit.h"
@@ -11,11 +21,9 @@ static char * all_tests();
 int tests_run = 0;
 
 int main() {
-    /* 
-     * The reults of all_tests() from minunit.h will == 0 when all 
+    /* The reults of all_tests() from minunit.h will == 0 when all 
      * tests pass. Otherwise, all_tests() will return a string 
-     * describing the failure. 
-    */
+     * describing the failure. */
     char *result = all_tests();
     if (result != 0) {
         printf("%s\n", result);
