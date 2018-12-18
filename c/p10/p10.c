@@ -32,12 +32,15 @@ int main() {
 }
 
 /* PROGRAM */
-
+/* Dealing with summation of millions. Use long long. */
+unsigned long long summation_primes(unsigned long upper_bound) {
+    return 0;
+}
 
 
 /* TESTS */
 static char * test_tk() {
-    mu_assert("", 0 == 0);
+    mu_assert("", summation_primes(0) == 0);
     return 0;
 }
 
