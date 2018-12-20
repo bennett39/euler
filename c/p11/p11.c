@@ -62,27 +62,47 @@ unsigned long largest_product_grid() {
     unsigned int* g = grid();
 
     int i;
-    unsigned long max_product = 0;
+    unsigned long max_product = 0, product = 0;
 
     for (i = 0; i < 400; i++) {
-        if (i < 397) {
-            unsigned long product = g[i] * g[i+1] * g[i+2] * g[i+3];
+        /* Horizontal products */
+        if (i % 20 < 17) {
+            product = g[i] * g[i+1] * g[i+2] * g[i+3];
             if (product > max_product) {
-                printf("%d:%d * %d * %d * %d = %lu\n", \
-                        i, g[i], g[i+1], g[i+2], g[i+3], product);
+                max_product = product;
+            }
+        }
+
+        /* Vertical products */
+        if (i < 339) {
+            product = g[i] * g[i+20] * g[i+40] * g[i+60];
+            if (product > max_product) {
+                max_product = product;
+            }
+        }
+
+        /* Left diagonal products */
+        if (i % 20 > 2 && i < 339) {
+            product = g[i] * g[i+19] * g[i+38] * g[i+57];
+            if (product > max_product) {
+                max_product = product;
+            }
+        }
+
+        if (i % 20 && i < 337) {
+            product = g[i] * g[i+21] * g[i+42] * g[i+63];
+            if (product > max_product) {
                 max_product = product;
             }
         }
     }
 
-    printf("%lu\n", max_product);
-
-    return 0;
+    return max_product;
 }
 
 /* TESTS */
 static char * test_0() {
-    mu_assert("", largest_product_grid() == 0);
+    mu_assert("", largest_product_grid() == 70600674);
     return 0;
 }
 
