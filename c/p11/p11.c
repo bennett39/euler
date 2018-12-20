@@ -61,7 +61,21 @@ unsigned int * grid() {
 unsigned long largest_product_grid() {
     unsigned int* g = grid();
 
-    printf("%d, %d\n", g[0], g[399]);
+    int i;
+    unsigned long max_product = 0;
+
+    for (i = 0; i < 400; i++) {
+        if (i < 397) {
+            unsigned long product = g[i] * g[i+1] * g[i+2] * g[i+3];
+            if (product > max_product) {
+                printf("%d:%d * %d * %d * %d = %lu\n", \
+                        i, g[i], g[i+1], g[i+2], g[i+3], product);
+                max_product = product;
+            }
+        }
+    }
+
+    printf("%lu\n", max_product);
 
     return 0;
 }
