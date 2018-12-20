@@ -1,3 +1,11 @@
+/* A program to find the largest product of four adjascent ints in a 
+ * grid.
+ *
+ * Uses a single for loop to iterate through the grid and calculate four
+ * products: horizontal, vertical, left diagonal, right diagonal.
+ *
+ * Runtime: linear */
+
 # include <stdio.h>
 # include <stdlib.h>
 # include "../minunit.h"
@@ -58,6 +66,7 @@ unsigned int * grid() {
     return g;
 }
 
+/* Need a long because largest possible value is 99^4. */
 unsigned long largest_product_grid() {
     unsigned int* g = grid();
 
