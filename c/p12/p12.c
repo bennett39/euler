@@ -2,6 +2,8 @@
 # include <stdlib.h>
 # include "../minunit.h"
 
+# include <math.h>
+
 /* Testing function prototype */
 static char * all_tests();
 
@@ -32,19 +34,46 @@ int main() {
 }
 
 /* PROGRAM */
-int number_of_divisors(unsigned long x) {
-    return 0;
+/* Idk how long the input might need to be, so long long for now. */
+int number_of_divisors(unsigned long long x) {
+    if (x <= 0) {
+        return 0;
+    }
+    else if (x > 0) {
+        int divisors = 0;
+        unsigned long root = sqrt(x);
+
+        unsigned long i;
+        for (i = 1; i <= root; i++) {
+            if (x % i == 0) {
+                unsigned long complement = x / i;
+                if (i == complement) {
+                    divisors++;
+                }
+                else {
+                    divisors += 2;
+                }
+            }
+        }
+        return divisors;
+    }
 }
 
 
 /* TESTS */
-static char * test_1() {
+static char * test_divisors_1() {
     mu_assert("Error: 1 !>> 1", number_of_divisors(1) == 1);
     return 0;
 }
 
+static char * test_divisors_6() {
+    mu_assert("Error: 6 !>> 4", number_of_divisors(6) == 4);
+    return 0;
+}
+
 static char * all_tests() {
-    mu_run_test(test_1);
+    mu_run_test(test_divisors_1);
+    mu_run_test(test_divisors_6);
 
     return 0;
 }
