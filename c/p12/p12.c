@@ -1,3 +1,15 @@
+/* A program to find triangle numbers with a given number of divisors.
+ *
+ * Two functions make up this program. number_of_divisors(x) works for
+ * any non-negative long x. Returns how many factors that number has in
+ * O(sqrt(x) time).
+ *
+ * triangle_number_divisibility(divisors) calculates the triangle
+ * numbers and checks each using number_of_divisors(). Runs until
+ * number_of_divisors(triangle_number) > divisors. 
+ *
+ * Runtime: quadratic but uses sqrt, so O(n * sqrt(n)) */
+
 # include <stdio.h>
 # include <stdlib.h>
 # include "../minunit.h"
