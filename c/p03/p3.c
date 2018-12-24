@@ -55,10 +55,6 @@ int main() {
 /* Returns a pointer to the single-dimension array `factors` */
 /* Number argument goes up to 1 trillion, so needs to be a long long. */ 
 int * prime_factors(long long number) {
-
-    /* DEBUGGING - Remove in production */
-    printf("%lli: {", number);
-
     /* Array size of 40 to accommodate prime factors up to 1 trillion, since
      * log2(1 trillion) ~= 39 -- the largest possible array of prime
      * factors less than 1 trillion. (e.g. 2 ^ 39) */
@@ -66,7 +62,6 @@ int * prime_factors(long long number) {
    
     if (number <= 3) {
         factors[0] = (int) number;
-        printf("}\n");
         return factors;
     }
 
@@ -93,17 +88,6 @@ int * prime_factors(long long number) {
         factors[counter] = (int) number;
     }
     
-
-    /* DEBUGGING - Remove in production */
-    int j;
-    for (j = 0; j < 40; j++) {
-        if (factors[j] != 0) {
-            printf("%d, ", factors[j]);
-        }
-    }
-
-    printf("}\n");
-
     return factors;
 }
 
