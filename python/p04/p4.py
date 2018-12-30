@@ -1,7 +1,6 @@
-
 def main():
-    print(is_palindrome(1221))
     print(largest_palindrome_product(999, 999))
+    
     return 0
 
 
@@ -29,6 +28,7 @@ def largest_palindrome_product(max_a, max_b):
                 largest_product = product
 
     return largest_product
+
 
 if __name__=="__main__":
     main()
