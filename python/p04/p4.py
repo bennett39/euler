@@ -21,10 +21,12 @@ def is_palindrome(x):
 def largest_palindrome_product(max_a, max_b):
     largest_product = 0
 
-    for a in range(max_a):
-        for b in range(max_b):
+    for a in range(max_a, 0, -1):
+        for b in range(max_b, 0, -1):
             product = a * b
-            if is_palindrome(product) and product > largest_product:
+            if product < largest_product:
+                break
+            if is_palindrome(product):
                 largest_product = product
 
     return largest_product
